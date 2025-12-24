@@ -39,5 +39,5 @@ export default function handler(req, res) {
     { expiresIn: "1h" }
   );
 
-  res.json({ token });
+  return res.status(200).json({ token });
 }
