@@ -11,6 +11,13 @@ const users = [
 ];
 
 export default function handler(req, res) {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://jlabs-exam-frontend-joseph-tiglaos-projects.vercel.app"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
   }
