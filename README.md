@@ -1,14 +1,27 @@
 # IP GeoTracker – Backend (Serverless Node.js)
 
-This repository contains the **backend API** for the IP GeoTracker project. The backend is built using **Node.js serverless functions** and deployed on **Vercel**.
+This repository contains the **backend API** for the IP GeoTracker project.
+
+The backend is designed to run **both offline on a local machine** and **online as a serverless deployment on Vercel**.
+It is built using **Node.js serverless functions** and includes an `index.js` file for local/offline execution.
 
 ---
 
 ## Tech Stack
 
 - Node.js
-- Vercel Serverless Functions
+- Serverless Functions (Vercel)
 - JSON Web Token (JWT)
+- ES Modules
+
+---
+
+## Requirements
+
+- Node.js **v18 or later**
+
+> Note: Developed and tested using **Node.js v22.x**
+> Compatible with Node.js v18+ (recommended for Vercel and local testing)
 
 ---
 
@@ -16,61 +29,17 @@ This repository contains the **backend API** for the IP GeoTracker project. The 
 
 ```
 backend/
-└── api/
-    └── login.js   # Authentication endpoint
+├── api/
+│   └── login.js        # Serverless function (Vercel)
+├── index.js            # Local/offline server entry
+└── package.json
 ```
 
 ---
 
-## ⚙️ Setup & Installation
+## Authentication (Test Credentials)
 
-### Requirements
-
-- Node.js v18 or later
-
-> Note: The project was developed using Node.js v22.x.
-> It is compatible with Node.js v18+ (recommended for Vercel and local testing).
-
-- Node.js (v18 or later recommended)
-- npm
-- Vercel CLI
-
-### Install Dependencies
-
-```bash
-npm install
-```
-
----
-
-## 🔐 Authentication API
-
-### Login Endpoint
-
-```
-POST /api/login
-```
-
-### Request Body
-
-```json
-{
-  "email": "jlabs@gmail.com",
-  "password": "password123"
-}
-```
-
-### Successful Response
-
-```json
-{
-  "token": "<JWT_TOKEN>"
-}
-```
-
-### Test Credentials
-
-Use the following credentials for testing:
+Use the following credentials for testing login:
 
 ```
 Email: jlabs@gmail.com
@@ -79,80 +48,69 @@ Password: password123
 
 ---
 
-## 🌐 CORS Configuration
+## Running the Backend Locally (Offline)
 
-Since this backend is **serverless**, CORS is handled inside each API route.
+The backend can be run **offline on a local machine** using `index.js`.
 
-- Allowed Origin:
-
-  ```
-  https://jlabs-exam-frontend-joseph-tiglaos-projects.vercel.app
-  ```
-
-- Preflight (`OPTIONS`) requests return HTTP 200
-
-This ensures the frontend hosted on Vercel can communicate with the API.
-
----
-
-## 🧪 Local Development
-
-This backend can be run **offline on a local machine** or **online via Vercel**.
-
-It includes an `index.js` file specifically for local/offline execution.
-
-This backend can be run **locally** or **online (Vercel)**.
-
-### Run Locally
-
-The backend includes an `index.js` file for offline/local development.
+### Install Dependencies
 
 ```bash
-node index.js
+npm install
 ```
 
-By default, the API will be available at:
-
-```
-http://localhost:3000/api/login
-```
-
-Alternatively, you can also run using Vercel CLI:
+### Start Local Server
 
 ```bash
-vercel dev
-```
-
-```bash
-vercel dev
+npm start
 ```
 
 The API will be available at:
 
 ```
-http://localhost:3000/api/login
+http://localhost:8000
+```
+
+Example endpoint:
+
+```
+POST http://localhost:8000/api/login
 ```
 
 ---
 
-## ☁️ Deployment
+## Running Online (Serverless – Vercel)
 
-Deploy to Vercel:
+The backend is deployed as **serverless functions** on Vercel.
 
-```bash
-vercel --prod
+Online base URL:
+
+```
+https://jlabs-exam-backend.vercel.app
+```
+
+Example endpoint:
+
+```
+POST https://jlabs-exam-backend.vercel.app/api/login
 ```
 
 ---
 
-## 📝 Notes
+## CORS Support
 
-- This backend does **not** use Express
-- Each API file is a standalone serverless function
-- JWT secret is hardcoded for demo purposes only
+CORS is configured to allow requests from the frontend hosted on Vercel and from local development environments.
 
 ---
 
-## 👨‍💻 Author
+## Notes
 
-Joseph Bautista
+- Supports **local/offline** and **online/serverless** execution
+- Uses JWT for authentication
+- Designed to work seamlessly with the Vite-React frontend
+- API base URL is configurable on the frontend via environment variables
+
+---
+
+## Author
+
+Joseph Tiglao
