@@ -1,3 +1,5 @@
+// This file will be use when running on vercel (hosted site)
+
 import jwt from "jsonwebtoken";
 
 const SECRET_KEY = "SECRET_KEY";
